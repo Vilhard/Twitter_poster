@@ -16,15 +16,11 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 router.post("/", urlencodedParser, (req, response) => {
   const twt = req.body.twt;
-  console.log(twt);
   T.post("statuses/update", { status: twt }, (error, data, res) => {
     if (error) {
-      console.log(data); // Tweet body
-      console.log(res); // Raw response object
-      response.send(400);
+      response.sendStatus(400);
     } else {
-      console.log("Message was sent successfully");
-      response.send(200);
+      response.sendStatus(200);
     }
   });
 });
